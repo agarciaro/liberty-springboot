@@ -8,8 +8,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
-import com.curso.spring.ejemplo.exception.NotFoundException;
-import com.curso.spring.ejemplo.model.Producto;
+import com.curso.spring.producto.exception.NotFoundException;
+import com.curso.spring.producto.model.Producto;
 
 import lombok.extern.slf4j.Slf4j;
 

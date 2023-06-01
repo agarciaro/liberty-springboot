@@ -7,16 +7,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import com.curso.spring.ejemplo.exception.MethodNotImplementedException;
-import com.curso.spring.ejemplo.model.Producto;
 import com.curso.spring.ejemplo.repository.ProductosRepository;
+import com.curso.spring.producto.exception.MethodNotImplementedException;
+import com.curso.spring.producto.model.Producto;
 
 import lombok.RequiredArgsConstructor;
 
-@Service("productosServiceDefecto")
-//@Primary
+@Service
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "productos-service-impl-name", havingValue = "ProductosServiceImpl1")
 public class ProductosServiceImpl implements ProductosService {
 	
 	private final ProductosRepository productosRepository;
