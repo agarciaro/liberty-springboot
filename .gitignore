@@ -12,6 +12,7 @@ logs/
 
 activeplanmng-lib/.toDelete
 
+**/.mvn/*
 */ignite/**
 */target/**
 */bin/**
