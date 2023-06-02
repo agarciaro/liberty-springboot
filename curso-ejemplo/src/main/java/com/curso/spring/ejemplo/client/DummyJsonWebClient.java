@@ -13,7 +13,7 @@ public class DummyJsonWebClient {
 	public Mono<String> getProducts(int id) {
 		log.info("** Start DummyJsonWebClient");
 		
-		Mono<String> response = WebClient.create()
+		Mono<String> response = WebClient.create() //Mono<List<String>> no es lo mismo que Flux<String>
 					.get()
 					.uri("https://dummyjson.com/products/" + id)
 					.retrieve()

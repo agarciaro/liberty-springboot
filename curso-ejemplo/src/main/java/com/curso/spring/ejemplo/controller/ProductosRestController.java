@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.curso.spring.ejemplo.annotation.LogueaTiempo;
+import com.curso.spring.ejemplo.client.DummyJsonFeignClient;
 import com.curso.spring.ejemplo.client.DummyJsonRestTemplateClient;
 import com.curso.spring.ejemplo.client.DummyJsonWebClient;
 import com.curso.spring.ejemplo.exception.NotFoundException;
@@ -43,6 +44,9 @@ public class ProductosRestController {
 	@Autowired
 	DummyJsonWebClient dummyJsonWebClient;
 	
+	@Autowired
+	DummyJsonFeignClient dummyJsonFeignClient;
+	
 	@LogueaTiempo(tiempoMaximo = 1000)
 	@GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public List<Producto> findAll() {
@@ -60,6 +64,16 @@ public class ProductosRestController {
 	public String findSyncMockById(@PathVariable(name = "id", required = true) int idProducto) {
 		String productosStr = dummyJsonRestTemplateClient.getProducts(idProducto);
 //		log.info("RESPUESTA PRODUCTOS DUMMY:{}", productosStr);
+		return productosStr;
+	}
+	
+	@GetMapping(path = "/{id}/sync/feign/mock")
+	@ResponseStatus(HttpStatus.OK)
+	public String findSyncFeignMockById(@PathVariable(name = "id", required = true) int idProducto) {
+		log.info("** Start DummyJsonFeignClient");
+		String productosStr = dummyJsonFeignClient.getProducts(idProducto);
+		log.info("RESPUESTA PRODUCTOS DUMMY:{}", productosStr);
+		log.info("** End DummyJsonFeignClient");
 		return productosStr;
 	}
 	

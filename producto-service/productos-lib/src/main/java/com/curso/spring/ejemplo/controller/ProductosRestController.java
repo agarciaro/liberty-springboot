@@ -17,39 +17,40 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.curso.spring.ejemplo.service.ProductosService;
+import com.curso.spring.producto.api.ProductosApi;
 import com.curso.spring.producto.exception.NotFoundException;
 import com.curso.spring.producto.model.Producto;
 
 @RestController
 @RequestMapping("/api/productos")
-public class ProductosRestController {
+public class ProductosRestController implements ProductosApi {
 	@Autowired
 	private ProductosService productosService;
 
-	@GetMapping()
+	@Override
 	public List<Producto> findAll() {
 		return productosService.findAll();
 	}
 	
-	@GetMapping(path = "/{id}")
+	@Override
 	@ResponseStatus(HttpStatus.OK)
 	public Producto findById(@PathVariable(name = "id", required = true) UUID idProducto) throws NotFoundException {
 		return productosService.findById(idProducto);
 	}
 	
-	@DeleteMapping(path = "/{id}")
+	@Override
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable UUID id) {
 		productosService.delete(id);
 	}
 	
-	@PostMapping
+	@Override
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Producto save(@RequestBody @Validated Producto producto) {
 		return productosService.save(producto);
 	}
 	
-	@PutMapping
+	@Override
 	public Producto update(@RequestBody Producto producto) {
 		return productosService.update(producto);
 	}
