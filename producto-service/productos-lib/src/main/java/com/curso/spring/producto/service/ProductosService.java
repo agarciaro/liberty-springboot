@@ -1,4 +1,4 @@
-package com.curso.spring.ejemplo.service;
+package com.curso.spring.producto.service;
 
 import java.util.List;
 import java.util.UUID;

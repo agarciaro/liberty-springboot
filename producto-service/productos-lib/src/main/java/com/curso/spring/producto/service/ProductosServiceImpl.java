@@ -1,4 +1,4 @@
-package com.curso.spring.ejemplo.service;
+package com.curso.spring.producto.service;
 
 import java.util.List;
 import java.util.UUID;
@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import com.curso.spring.ejemplo.repository.ProductosRepository;
 import com.curso.spring.producto.exception.MethodNotImplementedException;
 import com.curso.spring.producto.model.Producto;
+import com.curso.spring.producto.repository.ProductosRepository;
 
 import lombok.RequiredArgsConstructor;
 

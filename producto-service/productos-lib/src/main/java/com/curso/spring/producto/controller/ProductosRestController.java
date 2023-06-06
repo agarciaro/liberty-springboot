@@ -1,4 +1,4 @@
-package com.curso.spring.ejemplo.controller;
+package com.curso.spring.producto.controller;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.curso.spring.ejemplo.service.ProductosService;
 import com.curso.spring.producto.api.ProductosApi;
 import com.curso.spring.producto.exception.NotFoundException;
 import com.curso.spring.producto.model.Producto;
+import com.curso.spring.producto.service.ProductosService;
 
 @RestController
 @RequestMapping("/api/productos")

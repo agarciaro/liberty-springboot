@@ -1,4 +1,4 @@
-package com.curso.spring.ejemplo.repository;
+package com.curso.spring.producto.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import com.curso.spring.producto.model.Producto;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Repository
+//@Repository
 @Slf4j
 public class ProductosRepositoryImpl implements ProductosRepository {
 	

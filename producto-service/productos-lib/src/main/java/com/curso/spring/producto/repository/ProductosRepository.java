@@ -1,4 +1,4 @@
-package com.curso.spring.ejemplo.repository;
+package com.curso.spring.producto.repository;
 
 import java.util.List;
 import java.util.UUID;
