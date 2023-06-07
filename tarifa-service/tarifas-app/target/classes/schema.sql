@@ -1,8 +1,0 @@
-DROP TABLE IF EXISTS tarifas;
-
-CREATE TABLE tarifas
-(
-    id BIGSERIAL PRIMARY KEY NOT NULL,
-    nombre VARCHAR(255),
-    importe NUMERIC(5,2)
-);
