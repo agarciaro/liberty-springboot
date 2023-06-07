@@ -12,7 +12,7 @@ import com.curso.spring.producto.model.Producto;
 
 public interface ProductosApi {
 
-	@GetMapping()
+	@GetMapping
 	List<Producto> findAll();
 	
 	@GetMapping(path = "/{id}")

@@ -1,49 +1,59 @@
 package com.curso.spring.tarifa.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
+import com.curso.spring.tarifa.entity.TarifaEntity;
+import com.curso.spring.tarifa.mapper.TarifaMapper;
 import com.curso.spring.tarifa.model.Tarifa;
 import com.curso.spring.tarifa.repository.TarifasRepository;
 
 import lombok.RequiredArgsConstructor;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
 public class TarifasServiceImpl implements TarifasService {
 	
 	private final TarifasRepository tarifasRepository;
-	
+	private final TarifaMapper tarifaMapper = TarifaMapper.MAPPER;
+
 	@Override
-	public List<Tarifa> findAll() {
-//		return tarifasRepository.findAll();
-		return new ArrayList<>();
+	public Flux<Tarifa> findAll() {
+		Flux<TarifaEntity> entities = tarifasRepository.findAll();
+		return entities.map(t -> {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				
+			}
+			return tarifaMapper.toDto(t);
+		});
 	}
 
 	@Override
-	public Tarifa findById(Long id) {
+	public Mono<Tarifa> findById(Long id) {
+		// TODO Auto-generated method stub
 		return null;
-//		return tarifasRepository.findById(id);
 	}
 
 	@Override
 	public void delete(Long id) {
+		// TODO Auto-generated method stub
 		
-
 	}
 
 	@Override
-	public Tarifa save(Tarifa tarifa) {
+	public Mono<Tarifa> save(Tarifa tarifa) {
+		// TODO Auto-generated method stub
 		return null;
-//		return tarifasRepository.save(tarifa);
 	}
 
 	@Override
-	public Tarifa update(Tarifa producto) {
+	public Mono<Tarifa> update(Tarifa tarifa) {
+		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 
 }

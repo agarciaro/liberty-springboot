@@ -2,13 +2,16 @@ package com.curso.spring.tarifa.model;
 
 import java.math.BigDecimal;
 
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
-@RequiredArgsConstructor
+//@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Tarifa {
-	Long id;
-	String nombre;
-	BigDecimal importe;
+	private Long id;
+	private String nombre;
+	private BigDecimal importe;
 }

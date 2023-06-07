@@ -1,0 +1,7 @@
+com\curso\spring\tarifa\entity\TarifaEntity.class
+com\curso\spring\tarifa\service\TarifasService.class
+com\curso\spring\tarifa\controller\TarifaRestController.class
+com\curso\spring\tarifa\mapper\TarifaMapperImpl.class
+com\curso\spring\tarifa\repository\TarifasRepository.class
+com\curso\spring\tarifa\mapper\TarifaMapper.class
+com\curso\spring\tarifa\service\TarifasServiceImpl.class

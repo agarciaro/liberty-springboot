@@ -1,7 +1,5 @@
 package com.curso.spring.tarifa.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +13,9 @@ import com.curso.spring.tarifa.api.TarifasApi;
 import com.curso.spring.tarifa.model.Tarifa;
 import com.curso.spring.tarifa.service.TarifasService;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 @RestController
 @RequestMapping("/api/tarifas")
 public class TarifaRestController implements TarifasApi {
@@ -22,13 +23,13 @@ public class TarifaRestController implements TarifasApi {
 	private TarifasService tarifasService;
 
 	@Override
-	public List<Tarifa> findAll() {
+	public Flux<Tarifa> findAll() {
 		return tarifasService.findAll();
 	}
 	
 	@Override
 	@ResponseStatus(HttpStatus.OK)
-	public Tarifa findById(@PathVariable(name = "id", required = true) Long idTarifa) {
+	public Mono<Tarifa> findById(@PathVariable(name = "id", required = true) Long idTarifa) {
 		return tarifasService.findById(idTarifa);
 	}
 	
@@ -40,12 +41,12 @@ public class TarifaRestController implements TarifasApi {
 	
 	@Override
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Tarifa save(@RequestBody @Validated Tarifa tarifa) {
+	public Mono<Tarifa> save(@RequestBody @Validated Tarifa tarifa) {
 		return tarifasService.save(tarifa);
 	}
 	
 	@Override
-	public Tarifa update(@RequestBody Tarifa tarifa) {
+	public Mono<Tarifa> update(@RequestBody Tarifa tarifa) {
 		return tarifasService.update(tarifa);
 	}
 	
