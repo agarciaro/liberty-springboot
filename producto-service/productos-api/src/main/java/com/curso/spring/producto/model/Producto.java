@@ -1,12 +1,16 @@
 package com.curso.spring.producto.model;
 
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
-@RequiredArgsConstructor
+//@Value
+@Data
+//@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Producto {
-	Long id;
-	String nombre;
-	String codigo;
+	private Long id;
+	private String nombre;
+	private String codigo;
 }

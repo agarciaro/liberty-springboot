@@ -1,10 +1,13 @@
 package com.curso.spring.producto.repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.curso.spring.producto.exception.NotFoundException;
@@ -36,8 +39,25 @@ public class ProductosRepositoryJdbcTemplate implements ProductosRepository {
 
 	@Override
 	public Producto save(Producto producto) {
-		jdbcTemplate.update("INSERT INTO productos VALUES (?, ?)", producto.getNombre(), producto.getCodigo());
-		return findById(producto.getId());
+		GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+		var sql = """
+				INSERT INTO productos (nombre, codigo) 
+				VALUES (?, ?);
+				""";
+		
+		jdbcTemplate.update(conn -> {
+			//Compilar la SQL
+			PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			preparedStatement.setString(1, producto.getNombre());
+			preparedStatement.setString(2, producto.getCodigo());
+			
+			return preparedStatement;
+		}, generatedKeyHolder);
+		
+		Long id = (Long) generatedKeyHolder.getKeys().get("id");
+		
+		return findById(id);
 	}
 
 	@Override

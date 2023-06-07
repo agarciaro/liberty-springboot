@@ -10,7 +10,6 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import com.curso.spring.ejemplo.validation.CodigoValidator;
 import com.curso.spring.ejemplo.validation.FieldsValueMatchValidator;
 
 @Documented

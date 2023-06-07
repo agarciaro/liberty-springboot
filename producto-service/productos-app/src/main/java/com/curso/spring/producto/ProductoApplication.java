@@ -21,7 +21,7 @@ public class ProductoApplication {
 	
 	@PostConstruct
 	public void init() {
-		productosRepository.save(new Producto(null, "Producto1", "Codigo1"));
+		productosRepository.save(new Producto(null, "Producto2", "Codigo1"));
 	}
 
 }
