@@ -10,11 +10,10 @@
 
 logs/
 
-activeplanmng-lib/.toDelete
 
 **/.mvn/*
 */ignite/**
-*/target/**
+**/target/**
 */bin/**
 */settings/**
 */logs/**
