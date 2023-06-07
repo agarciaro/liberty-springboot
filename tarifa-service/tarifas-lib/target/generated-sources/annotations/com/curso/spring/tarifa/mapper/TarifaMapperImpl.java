@@ -2,14 +2,13 @@ package com.curso.spring.tarifa.mapper;
 
 import com.curso.spring.tarifa.entity.TarifaEntity;
 import com.curso.spring.tarifa.model.Tarifa;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-07T12:54:06+0200",
+    date = "2023-06-07T21:51:35+0200",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
 )
 public class TarifaMapperImpl implements TarifaMapper {
@@ -20,15 +19,11 @@ public class TarifaMapperImpl implements TarifaMapper {
             return null;
         }
 
-        Long id = null;
-        String nombre = null;
-        BigDecimal importe = null;
+        Tarifa tarifa = new Tarifa();
 
-        id = entity.getId();
-        nombre = entity.getNombre();
-        importe = entity.getImporte();
-
-        Tarifa tarifa = new Tarifa( id, nombre, importe );
+        tarifa.setId( entity.getId() );
+        tarifa.setNombre( entity.getNombre() );
+        tarifa.setImporte( entity.getImporte() );
 
         return tarifa;
     }

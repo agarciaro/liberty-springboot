@@ -1,5 +1,6 @@
 package com.curso.spring.tarifa.service;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.curso.spring.tarifa.entity.TarifaEntity;
@@ -8,11 +9,13 @@ import com.curso.spring.tarifa.model.Tarifa;
 import com.curso.spring.tarifa.repository.TarifasRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TarifasServiceImpl implements TarifasService {
 	
 	private final TarifasRepository tarifasRepository;
@@ -31,10 +34,11 @@ public class TarifasServiceImpl implements TarifasService {
 		});
 	}
 
+	@Cacheable("tarifasCache")
 	@Override
 	public Mono<Tarifa> findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Dentro de findById:{}", id);
+		return tarifasRepository.findById(id).map(t -> tarifaMapper.toDto(t));
 	}
 
 	@Override

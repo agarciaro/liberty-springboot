@@ -2,6 +2,8 @@
 .project
 /.metadata/
 /.recommenders/
+target/
+*.class
 
 .idea/
 
