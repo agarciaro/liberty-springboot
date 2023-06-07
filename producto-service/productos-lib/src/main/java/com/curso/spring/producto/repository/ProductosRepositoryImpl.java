@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-
-import org.springframework.stereotype.Repository;
 
 import com.curso.spring.producto.exception.NotFoundException;
 import com.curso.spring.producto.model.Producto;
@@ -17,13 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProductosRepositoryImpl implements ProductosRepository {
 	
-	private final Map<UUID, Producto> productos = new HashMap<>();
+	private final Map<Long, Producto> productos = new HashMap<>();
 	
 	{
 
-		productos.put(UUID.fromString("8bcc5537-d3c2-4e80-9d3f-3fdb41fc293b"), new Producto(UUID.fromString("8bcc5537-d3c2-4e80-9d3f-3fdb41fc293b"), "Nombre1", "0123456"));
+		productos.put(1L, new Producto(1L, "Nombre1", "0123456"));
 
-		productos.put(UUID.fromString("de87ae95-aa9b-4723-acf4-f7b1618465b6"), new Producto(UUID.fromString("de87ae95-aa9b-4723-acf4-f7b1618465b6"), "Nombre2", "9876543210"));
+		productos.put(2L, new Producto(2L, "Nombre2", "9876543210"));
 
 	}
 	
@@ -38,9 +35,9 @@ public class ProductosRepositoryImpl implements ProductosRepository {
 	}
 
 	@Override
-	public Producto findById(UUID id) throws NotFoundException {
+	public Producto findById(Long id) throws NotFoundException {
 		Producto producto = productos.get(id);
-		log.info("Producto findById:{}", producto.getNombre());
+//		log.info("Producto findById:{}", producto.getNombre());
 		if(producto == null) {
 			throw new NotFoundException();
 		}
@@ -48,7 +45,7 @@ public class ProductosRepositoryImpl implements ProductosRepository {
 	}
 
 	@Override
-	public void delete(UUID id) {
+	public void delete(Long id) {
 		productos.remove(id);
 	}
 

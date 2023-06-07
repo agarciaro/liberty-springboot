@@ -40,7 +40,7 @@ public class ProductosRepositoryImpl implements ProductosRepository {
 	@Override
 	public Producto findById(UUID id) throws NotFoundException {
 		Producto producto = productos.get(id);
-		log.info("Producto findById:{}", producto.getNombre());
+//		log.info("Producto findById:{}", producto.getNombre());
 		if(producto == null) {
 			throw new NotFoundException();
 		}

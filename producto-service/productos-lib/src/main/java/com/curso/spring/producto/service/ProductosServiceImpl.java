@@ -1,10 +1,7 @@
 package com.curso.spring.producto.service;
 
 import java.util.List;
-import java.util.UUID;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.curso.spring.producto.exception.MethodNotImplementedException;
@@ -31,12 +28,12 @@ public class ProductosServiceImpl implements ProductosService {
 	}
 
 	@Override
-	public Producto findById(UUID id) {
+	public Producto findById(Long id) {
 		return productosRepository.findById(id);
 	}
 
 	@Override
-	public void delete(UUID id) {
+	public void delete(Long id) {
 		throw new MethodNotImplementedException();
 
 	}

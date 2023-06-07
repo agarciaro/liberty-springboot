@@ -1,12 +1,10 @@
 package com.curso.spring.producto.repository;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.curso.spring.producto.exception.NotFoundException;
@@ -27,20 +25,18 @@ public class ProductosRepositoryJdbcTemplate implements ProductosRepository {
 	}
 
 	@Override
-	public Producto findById(UUID id) throws NotFoundException {
-		SqlParameterSource namedParameterSource = new MapSqlParameterSource().addValue("id", id);
-//		return jdbcTemplate.queryForObject("SELECT * FROM producto WHERE id = ?", namedParameterSource, new BeanPropertyRowMapper<Producto>(Producto.class));
-		return jdbcTemplate.queryForObject("SELECT * FROM producto WHERE id = ?", new Object[] {id}, Producto.class);
+	public Producto findById(Long id) throws NotFoundException {
+		return jdbcTemplate.queryForObject("SELECT * FROM productos WHERE id = ?", new BeanPropertyRowMapper<>(Producto.class), id);
 	}
 
 	@Override
-	public void delete(UUID id) {
+	public void delete(Long id) {
 
 	}
 
 	@Override
 	public Producto save(Producto producto) {
-		jdbcTemplate.update("INSERT INTO producto VALUES (?, ?, ?)", producto.getId(), producto.getNombre(), producto.getCodigo());
+		jdbcTemplate.update("INSERT INTO productos VALUES (?, ?)", producto.getNombre(), producto.getCodigo());
 		return findById(producto.getId());
 	}
 

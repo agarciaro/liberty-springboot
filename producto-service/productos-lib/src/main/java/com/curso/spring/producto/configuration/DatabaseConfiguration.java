@@ -1,4 +1,4 @@
-package com.curso.spring.producto.controller.configuration;
+package com.curso.spring.producto.configuration;
 
 import javax.sql.DataSource;
 
@@ -12,10 +12,10 @@ public class DatabaseConfiguration {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:mem:productosdb");
-		dataSource.setUsername("sa");
-//		dataSource.setPassword(null);
+		dataSource.setDriverClassName("org.postgresql.Driver");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/curso");
+		dataSource.setUsername("postgres");
+		dataSource.setPassword("postgres");
 		
 		return dataSource;
 	}
